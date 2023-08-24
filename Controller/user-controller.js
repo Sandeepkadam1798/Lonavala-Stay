@@ -118,7 +118,7 @@ const response = await Property.findByIdAndDelete(id);
 
 
 module.exports.Fillterproperties = async (req, res) => {
-  const { category, checkIn, checkOut } = req.query;
+  const { category, checkIn, checkOut } = req.query
 
   try {
     let properties = await Property.find({ category });
@@ -220,8 +220,8 @@ module.exports.Getbookings = async (req, res) => {
 module.exports.Checkout=async (req,res)=>{
   const {amount}=req.body
   const instance = new Razorpay({
-    key_id:"rzp_test_TylPzNmfBh90e2",
-    key_secret:"dkav399OTk3hgRAwWLJYEgaL",
+    key_id:process.env.REZ_KEY,
+    key_secret:REZ_KEYSECRET,
   });
   
 

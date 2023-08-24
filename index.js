@@ -5,9 +5,12 @@ const app=express()
 const mongoose=require("mongoose")
 const routes=require("./Routes/Route.js")
 
+
  require('dotenv').config();
 
-const PORT=2585
+const PORT =process.env.PORT;
+
+console.log(PORT);
 
 
 
@@ -16,7 +19,8 @@ const PORT=2585
 
  mongoose.set('strictQuery',true);
 
- const mongoDB ="mongodb+srv://sandeepkadam1798sk:34SxDmuXcJOGlqfU@cluster0.faoughe.mongodb.net/"
+ const mongoDB=process.env.MONGOURL 
+
 mongoose.connect(mongoDB, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
@@ -33,7 +37,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 app.use("/",routes)
 
  app.get("/getkey",(req,res)=>{
-  res.status(200).json({key:"rzp_test_TylPzNmfBh90e2"})
+  res.status(200).json({key:process.env.REZ_KEY})
  })
 
 app.listen(PORT,()=>{
